@@ -4,11 +4,13 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.example.mycardsapp.R;
+
 @Entity(tableName = "card_table")
 public class Card {
-
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String cardTitle;
     private int cardNumber;

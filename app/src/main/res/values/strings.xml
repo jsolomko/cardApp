@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyCardsApp</string>
+    <string name="add_first_card">Добавьте свою первую карту</string>
+</resources>

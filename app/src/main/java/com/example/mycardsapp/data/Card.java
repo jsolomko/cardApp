@@ -1,5 +1,6 @@
 package com.example.mycardsapp.data;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
@@ -14,13 +15,13 @@ public class Card {
     private int id;
     private String cardTitle;
     private int cardNumber;
-    private int card_front;
+    private Bitmap card_front;
     private int card_back;
 
-    public Card(int id, String cardTitle, int card_back) {
+    public Card(int id, String cardTitle, Bitmap card_front) {
         this.id = id;
         this.cardTitle = cardTitle;
-        this.card_back = card_back;
+        this.card_front = card_front;
     }
 
     public int getId() {
@@ -47,11 +48,11 @@ public class Card {
         this.cardNumber = cardNumber;
     }
 
-    public int getCard_front() {
+    public Bitmap getCard_front() {
         return card_front;
     }
 
-    public void setCard_front(int card_front) {
+    public void setCard_front(Bitmap card_front) {
         this.card_front = card_front;
     }
 

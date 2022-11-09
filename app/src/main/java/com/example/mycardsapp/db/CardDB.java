@@ -13,7 +13,7 @@ import com.example.mycardsapp.utils.ImageBitmapString;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Card.class}, version = 0, exportSchema = false)
+@Database(entities = {Card.class}, version = 1, exportSchema = false)
 @TypeConverters({ImageBitmapString.class})
 public abstract class CardDB extends RoomDatabase {
     public abstract CardDao cardDao();

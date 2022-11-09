@@ -18,8 +18,7 @@ public class Card {
     private Bitmap card_front;
     private int card_back;
 
-    public Card(int id, String cardTitle, Bitmap card_front) {
-        this.id = id;
+    public Card( String cardTitle, Bitmap card_front) {
         this.cardTitle = cardTitle;
         this.card_front = card_front;
     }

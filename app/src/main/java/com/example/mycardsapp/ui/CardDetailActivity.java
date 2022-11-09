@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.app.Activity;
@@ -18,10 +19,13 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mycardsapp.R;
+import com.example.mycardsapp.data.Card;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,14 +34,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class CardDetailActivity extends AppCompatActivity {
+    EditText edTitle;
     ImageView imageViewFront, imageViewBack;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private static final int CAMERA_REQUEST = 1888;
+    Bitmap photo;
+    CardViewModel cardViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_detail);
+        edTitle = findViewById(R.id.ed_card_title);
         imageViewFront = findViewById(R.id.image_front);
         imageViewBack = findViewById(R.id.image_back);
 
@@ -86,8 +94,7 @@ public class CardDetailActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-
+            photo = (Bitmap) data.getExtras().get("data");
 
             imageViewFront.setImageBitmap(photo);
             saveToInternalStorage(photo);
@@ -96,8 +103,9 @@ public class CardDetailActivity extends AppCompatActivity {
 
 
     public void saveCard(View view) {
-
-
+        Card card = new Card(edTitle.getText().toString(), photo);
+        cardViewModel = new ViewModelProvider(this).get(CardViewModel.class);
+        cardViewModel.addCard(card);
         startActivity(new Intent(CardDetailActivity.this, MainActivity.class));
     }
 

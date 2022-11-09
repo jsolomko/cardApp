@@ -21,11 +21,11 @@ import java.util.List;
 public class CardAdapter extends ListAdapter<Card, CardAdapter.CardVH> {
     LiveData<List<Card>> listCards;
 
-    protected CardAdapter(@NonNull DiffUtil.ItemCallback<Card> diffCallback) {
+    public CardAdapter(@NonNull DiffUtil.ItemCallback<Card> diffCallback) {
         super(diffCallback);
     }
 
-    class CardVH extends RecyclerView.ViewHolder {
+   static class CardVH extends RecyclerView.ViewHolder {
         TextView cardTitle;
         ImageView cardFrontImage;
 
@@ -52,7 +52,7 @@ public class CardAdapter extends ListAdapter<Card, CardAdapter.CardVH> {
     }
 
 
-    class CardDiff extends DiffUtil.ItemCallback<Card> {
+     static public class  CardDiff extends DiffUtil.ItemCallback<Card> {
         @Override
         public boolean areItemsTheSame(@NonNull Card oldItem, @NonNull Card newItem) {
             return oldItem == newItem;

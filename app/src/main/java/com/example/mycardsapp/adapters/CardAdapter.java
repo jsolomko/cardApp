@@ -1,5 +1,6 @@
 package com.example.mycardsapp.adapters;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mycardsapp.R;
 import com.example.mycardsapp.data.Card;
+import com.example.mycardsapp.utils.ResizedBitmap;
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class CardAdapter extends ListAdapter<Card, CardAdapter.CardVH> {
         super(diffCallback);
     }
 
-   static class CardVH extends RecyclerView.ViewHolder {
+    static class CardVH extends RecyclerView.ViewHolder {
         TextView cardTitle;
         ImageView cardFrontImage;
 
@@ -47,12 +49,13 @@ public class CardAdapter extends ListAdapter<Card, CardAdapter.CardVH> {
     public void onBindViewHolder(@NonNull CardVH holder, int position) {
         Card card = getItem(position);
         holder.cardTitle.setText(card.getCardTitle());
-        holder.cardFrontImage.setImageBitmap(card.getCard_front());
+        holder.cardFrontImage.setImageBitmap(ResizedBitmap.getResizedBitmap(card.getCard_front(),
+                600, 400));
 
     }
 
 
-     static public class  CardDiff extends DiffUtil.ItemCallback<Card> {
+    static public class CardDiff extends DiffUtil.ItemCallback<Card> {
         @Override
         public boolean areItemsTheSame(@NonNull Card oldItem, @NonNull Card newItem) {
             return oldItem == newItem;

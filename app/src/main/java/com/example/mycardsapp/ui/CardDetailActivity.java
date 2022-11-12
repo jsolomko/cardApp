@@ -97,7 +97,7 @@ public class CardDetailActivity extends AppCompatActivity {
             photo = (Bitmap) data.getExtras().get("data");
 
             imageViewFront.setImageBitmap(photo);
-            saveToInternalStorage(photo);
+           saveToInternalStorage(photo);
         }
     }
 

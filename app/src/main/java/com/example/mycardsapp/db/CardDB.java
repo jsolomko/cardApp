@@ -13,7 +13,7 @@ import com.example.mycardsapp.utils.ImageBitmapString;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Card.class}, version = 1, exportSchema = false)
+@Database(entities = {Card.class}, version = 3, exportSchema = false)
 @TypeConverters({ImageBitmapString.class})
 public abstract class CardDB extends RoomDatabase {
     public abstract CardDao cardDao();
@@ -29,6 +29,7 @@ public abstract class CardDB extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room
                             .databaseBuilder(application.getApplicationContext(), CardDB.class, DB_NAME)
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
